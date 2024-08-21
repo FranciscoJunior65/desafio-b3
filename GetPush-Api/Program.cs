@@ -1,6 +1,5 @@
 using GetPush_Api.Domain.Commands.Handlers;
 using GetPush_Api.Domain.Commands.Interface;
-using GetPush_Api.Domain.Commands.Results.map;
 using GetPush_Api.Domain.Repositories;
 using GetPush_Api.Domain.Util;
 using GetPush_Api.Infra.Repositories;
@@ -92,25 +91,10 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     });
 
     // Command Handler
-    services.AddTransient<IAccountCommandHandler, AccountCommandHandler>();
-    services.AddTransient<IContaPagaCommandHandler, ContaPagaCommandHandler>();
-    services.AddTransient<ITipoContaPagaCommandHandler, TipoContaPagaCommandHandler>();
-    services.AddTransient<IValorRecebidoCommandHandler, ValorRecebidoCommandHandler>();
-    services.AddTransient<ITipoValorRecebidoCommandHandler, TipoValorRecebidoCommandHandler>();
-    services.AddTransient<IGraficoCommanddHandler, GraficoCommanddHandler>();
     services.AddTransient<ICalculosCommandHandler, CalculosCommandHandler>();
 
     // Repository
-    services.AddTransient<IAccountRepository, AccountRepository>();
-    services.AddTransient<IContaPagaRepository, ContaPagaRepository>();
-    services.AddTransient<ITipoContaPagaRepository, TipoContaPagaRepository>();
-    services.AddTransient<IValorRecebidoRepository, ValorRecebidoRepository>();
-    services.AddTransient<ITipoValorRecebidoRepository, TipoValorRecebidoRepository>();
-    services.AddTransient<IGraficoRepository, GraficoRepository>();
     services.AddTransient<ICalculosRepository, CalculosRepository>();
-
-    // Map
-    services.AddTransient<UsuarioMap>();
 
     // Utils
     services.AddTransient<Utilidades>();
@@ -127,34 +111,34 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     builder.Services.AddTransient<IDbConnection>(sp =>
     new SqlConnection(builder.Configuration.GetConnectionString("CnnStr")));
 
-    var symmetricKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Runtime.KeySecurityToken));
+    //var symmetricKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Runtime.KeySecurityToken));
 
-    builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    }).AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "seu-issuer",
-            ValidAudience = "seu-audience",
-            IssuerSigningKey = symmetricKey
-        };
-    }).AddCookie(options =>
-    {
-        options.Cookie.Name = "YourSessionCookieName"; // Nome do cookie de sessão
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.None; // Altere conforme necessário
-        options.Cookie.SameSite = SameSiteMode.Strict; // Melhorar a segurança, conforme necessário
-        options.Cookie.IsEssential = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Tempo de expiração da sessão
-        options.SlidingExpiration = true; // Renova a expiração em cada requisição
-    });
+    //builder.Services.AddAuthentication(options =>
+    //{
+    //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    //}).AddJwtBearer(options =>
+    //{
+    //    options.TokenValidationParameters = new TokenValidationParameters
+    //    {
+    //        ValidateIssuer = true,
+    //        ValidateAudience = true,
+    //        ValidateLifetime = true,
+    //        ValidateIssuerSigningKey = true,
+    //        ValidIssuer = "seu-issuer",
+    //        ValidAudience = "seu-audience",
+    //        IssuerSigningKey = symmetricKey
+    //    };
+    //}).AddCookie(options =>
+    //{
+    //    options.Cookie.Name = "YourSessionCookieName"; // Nome do cookie de sessão
+    //    options.Cookie.HttpOnly = true;
+    //    options.Cookie.SecurePolicy = CookieSecurePolicy.None; // Altere conforme necessário
+    //    options.Cookie.SameSite = SameSiteMode.Strict; // Melhorar a segurança, conforme necessário
+    //    options.Cookie.IsEssential = true;
+    //    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Tempo de expiração da sessão
+    //    options.SlidingExpiration = true; // Renova a expiração em cada requisição
+    //});
 
     builder.Services.AddAuthorization(options =>
     {

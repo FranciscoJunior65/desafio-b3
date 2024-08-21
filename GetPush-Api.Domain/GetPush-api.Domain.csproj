@@ -11,4 +11,10 @@
     <ProjectReference Include="..\GetPush-Api.Shared\GetPush-api.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Inputs\" />
+    <Folder Include="Commands\Results\map\" />
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
 </Project>
