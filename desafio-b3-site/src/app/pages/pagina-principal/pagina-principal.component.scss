@@ -1,0 +1,57 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajusta a altura do container para centralizar verticalmente */
+}
+
+.custom-card {
+  width: 70%; /* Define a largura do card como 50% da tela */
+  max-width: 800px; /* Define um limite máximo de largura */
+  min-width: 300px; /* Define um limite mínimo de largura */
+}
+
+.flex-container {
+  display: flex;
+  gap: 16px; /* Ajuste o valor conforme necessário */
+}
+
+.example-full-width {
+  flex: 1;
+}
+
+/* Adicione este CSS ao seu arquivo de estilos */
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-container {
+  margin-top: 20px; /* Adiciona espaço entre os campos de entrada e os resultados */
+}
+
+.mat-form-field {
+  margin-bottom: 10px; /* Adiciona um pequeno espaço entre os campos de formulário */
+}
+
+.custom-card {
+  padding: 20px;
+  background-color: #535252; /* Cinza claro */
+  border-radius: 8px; /* Bordas arredondadas (opcional) */
+}
+
+.custom-button {
+  background-color: #007bff !important; /* Azul padrão */
+  color: white !important; /* Cor do texto branco */
+  border: none !important; /* Remove bordas padrão do botão */
+  border-radius: 4px !important; /* Bordas arredondadas (opcional) */
+  padding: 8px 16px !important; /* Espaçamento interno (opcional) */
+  font-size: 16px !important; /* Tamanho da fonte (opcional) */
+  cursor: pointer !important; /* Cursor pointer para indicar que é clicável */
+  transition: background-color 0.3s !important; /* Transição suave ao passar o mouse (opcional) */
+}
+
+.custom-button:hover {
+  background-color: #0056b3 !important; /* Azul mais escuro ao passar o mouse */
+}

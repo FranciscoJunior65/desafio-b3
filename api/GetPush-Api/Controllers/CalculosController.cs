@@ -18,15 +18,21 @@ namespace GetPush_Api.Controllers
             _handler = handler;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route(nameof(CalculoCDB))]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [SwaggerOperation(Summary = "Calculo", Description = "Faz calculo de CDB")]
         [AllowAnonymous]
-        public async Task<IActionResult> CalculoCDB([FromBody] CalculoCDBSignature signature)
+        public async Task<IActionResult> CalculoCDB([FromQuery] decimal valorMonetario, [FromQuery] int prazoMeses)
         {
             try
             {
+                var signature = new CalculoCDBSignature
+                {
+                    valorMonetario = valorMonetario,
+                    prazoMeses = prazoMeses
+                };
+
                 if (signature.valorMonetario < 0)
                     return BadRequest("Valor monetário não pode ser negativo.");
 
@@ -34,7 +40,7 @@ namespace GetPush_Api.Controllers
 
                 return ApiResponse(true, "Executado com sucesso", result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ErrorResponse($"Erro: {ex.Message}");
             }

@@ -1,0 +1,58 @@
+<form [formGroup]="form">
+  <div class="card-container">
+    <mat-card class="custom-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Teste B3 - Calculo CDB</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Valor Monetário</mat-label>
+            <input
+              matInput
+              currencyMask
+              formControlName="valorMonetario"
+              placeholder="Valor Monetário"
+              type="text"
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Prazo Meses</mat-label>
+            <input
+              matInput
+              formControlName="prazoMeses"
+              placeholder="Prazo Meses"
+              type="number"
+            >
+          </mat-form-field>
+          <button mat-flat-button (click)="calcular()"
+            class="custom-button">Calcular</button>
+          <button mat-flat-button (click)="limpar()"
+            class="custom-button">Limpar</button>
+          <br/>
+        </div>
+
+        <div class="flex-container">
+          <mat-form-field class="example-full-width">
+            <mat-label>Resultado Bruto</mat-label>
+            <input
+              matInput
+              [value]="resultadoBruto"
+              type="text"
+              disabled
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Resultado Líquido</mat-label>
+            <input
+              matInput
+              [value]="resultadoLiquido"
+              type="text"
+              disabled
+            >
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</form>
